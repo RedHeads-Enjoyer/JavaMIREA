@@ -13,5 +13,6 @@ public class Nursery {
         dog2.setName("XQc");
         System.out.println(dog1.toString());
         System.out.println(dog2.toString());
+        System.out.println(dog2.humanAge() + " in human years");
     }
 }

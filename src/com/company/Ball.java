@@ -1,12 +1,24 @@
 package com.company;
 
 public class Ball {
-    public int weight;
-    public String material;
+    private int weight;
+    private String color;
 
-    public Ball(int weight, String material) {
+    public Ball(int weight, String color) {
         this.weight = weight;
-        this.material = material;
+        this.color = color;
+    }
+
+    public Ball(int weight) {
+        this.weight = weight;
+    }
+
+    public Ball(String color) {
+        this.color = color;
+    }
+
+    public Ball() {
+
     }
 
     public int getWeight() {
@@ -17,11 +29,20 @@ public class Ball {
         this.weight = weight;
     }
 
-    public String getMaterial() {
-        return material;
+    public String getColor() {
+        return color;
     }
 
-    public void setMaterial(String material) {
-        this.material = material;
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public double radius() {  // При учете плотности 1000 кг/м^3
+        double v = (double) weight / 1000;
+        return Math.pow((3 * v) / (4 * Math.PI), 1.f/3);
+    }
+
+    public String toString() {
+        return "color: " + color + ", weight: " + weight + "g";
     }
 }
