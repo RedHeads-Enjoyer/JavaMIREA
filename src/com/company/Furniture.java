@@ -10,32 +10,16 @@ public abstract class Furniture {
         return sold;
     }
 
-    public void setSold(boolean sold) {
-        this.sold = sold;
-    }
-
     public int getLegCount() {
         return legCount;
-    }
-
-    public void setLegCount(int legCount) {
-        this.legCount = legCount;
     }
 
     public int getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
-        this.price = price;
-    }
-
     public int getHeight() {
         return height;
-    }
-
-    public void setHeight(int height) {
-        this.height = height;
     }
 
     public Furniture(int legCount, int price, int height, boolean sold) {
