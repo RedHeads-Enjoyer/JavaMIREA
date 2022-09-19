@@ -15,6 +15,7 @@ public class StackSolution {
             int card1 = player1.pop();
             int card2 = player2.pop();
 
+            // Кто забирает карты
             if ((card1 > card2 && card2 != 0 && card1 != 9) || (card1 == 0 && card2 == 9)) {
                 stack1.push(card1);
                 stack1.push(card2);
@@ -24,6 +25,7 @@ public class StackSolution {
                 stack2.push(card2);
             }
 
+            // Возвращение карт из буфера в колоду
             if (player1.size() == 0 && player2.size() != 0) {
                 while (stack1.size() > 0) {
                     player1.push(stack1.pop());
@@ -36,6 +38,7 @@ public class StackSolution {
                 }
             }
 
+            // Проверка конца игры
             if (player1.size() == 0) {
                 System.out.println("second " + iteration);
                 finish = true;

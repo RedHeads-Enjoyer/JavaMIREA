@@ -14,6 +14,7 @@ public class DequeSolution {
             int card1 = player1.pop();
             int card2 = player2.pop();
 
+            // Кто забирает карты
             if ((card1 > card2 && card2 != 0 && card1 != 9) || (card1 == 0 && card2 == 9)) {
                 player1.addLast(card1);
                 player1.addLast(card2);
@@ -23,6 +24,7 @@ public class DequeSolution {
                 player2.addLast(card2);
             }
 
+            // Проверка конца игры
             if (player1.size() == 0) {
                 System.out.println("second " + iteration);
                 finish = true;
