@@ -5,7 +5,7 @@ import java.util.Scanner;
 import java.util.Stack;
 
 public class StackSolution {
-    public void game(Stack<Integer> player1, Stack<Integer> player2){
+    private void game(Stack<Integer> player1, Stack<Integer> player2){
         Stack<Integer> stack1 = new Stack<Integer>();
         Stack<Integer> stack2 = new Stack<Integer>();
         int iteration = 0;
