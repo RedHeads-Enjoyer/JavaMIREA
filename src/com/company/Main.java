@@ -10,5 +10,9 @@ public class Main {
         System.out.println("Ex 2");
         QueueSolution queueSolution = new QueueSolution();
         queueSolution.test();
+
+        System.out.println("Ex 3");
+        DequeSolution dequeSolution = new DequeSolution();
+        dequeSolution.test();
     }
 }
