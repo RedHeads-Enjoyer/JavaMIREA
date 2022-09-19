@@ -2,7 +2,6 @@ package com.company;
 
 import java.util.Random;
 import java.util.Scanner;
-import java.util.concurrent.Callable;
 
 public class BaseStudentClass {
 
@@ -22,7 +21,7 @@ public class BaseStudentClass {
         }
     }
 
-    public int test(Callable<Student[]> func) { // Ввод подходящих чисел
+    public int input() { // Ввод подходящих чисел
         int a;
         Scanner scanner = new Scanner(System.in);
         System.out.print("Введите длину массива (1 - 100): ");
