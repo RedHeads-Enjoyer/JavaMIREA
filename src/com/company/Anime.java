@@ -13,21 +13,20 @@ public class Anime extends JFrame {
     public Anime() {
         JFrame frame = new JFrame();
         JLabel label = new JLabel();
+        ImageIcon[] imageIcons = new ImageIcon[105];
 
-        frame.setTitle("༼ つ ◕_◕ ༽つ");
-        frame.setTitle("(っ˘ڡ˘ς) вкусно поел");
+        for (int i = 0; i < 105; i++) {
+            filename = "frame_" + new DecimalFormat( "000" ).format(i) + "_delay-0.08s.jpg";
+            imageIcons[i] = new ImageIcon(filename);
+        }
 
-
-
-        timer = new Timer(40, new ActionListener() {
+        timer = new Timer(80, new ActionListener() {
             int framePosition = 0;
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (framePosition % 10 == 0) frame.setTitle("༼ つ ◕_◕ ༽つ");
                 else if (framePosition % 10 == 5) frame.setTitle("(っ˘ڡ˘ς) вкусно поел");
-                filename = "frame_" + new DecimalFormat( "000" ).format(framePosition % 105) + "_delay-0.08s.gif";
-                ImageIcon image = new ImageIcon(filename);
-                label.setIcon(image);
+                label.setIcon(imageIcons[framePosition % 105]);
                 framePosition++;
             }
         });
