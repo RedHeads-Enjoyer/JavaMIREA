@@ -1,5 +1,7 @@
 package com.company;
 
+import java.util.Locale;
+
 public class Person {
     private String name       = "";
     private String surname    = "";
@@ -23,8 +25,8 @@ public class Person {
     public String getFIO() {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(surname).append(" ");
-        if (!name.isEmpty())       stringBuilder.append(name). append(".");
-        if (!patronymic.isEmpty()) stringBuilder.append(" ").append(patronymic).append(".");
-        return stringBuilder.toString();
+        if (!name.isEmpty())       stringBuilder.append(name.charAt(0)). append(". ");
+        if (!patronymic.isEmpty()) stringBuilder.append(patronymic.charAt(0)).append(".");
+        return stringBuilder.toString().trim();
     }
 }
