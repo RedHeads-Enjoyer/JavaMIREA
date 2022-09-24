@@ -22,12 +22,10 @@ public class Alphabet {
         StringBuilder stringBuilder = new StringBuilder();
         Scanner scanner = new Scanner(reader);
 
-        // Считывание данных из файла
-        while (scanner.hasNextLine()) {
-            string = new StringBuilder(stringBuilder.append(scanner.nextLine()).toString());
-        }
+        // Считывание данных из первой строки
+        string = new StringBuilder(stringBuilder.append(scanner.nextLine()).toString());
 
-        // Разбиение текста наотдельные слова
+        // Разбиение текста на отдельные слова
         StringTokenizer stringTokenizer = new StringTokenizer(string.toString(), " :,.", false);
 
         // Массив со словами из текста

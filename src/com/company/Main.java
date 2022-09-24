@@ -16,6 +16,6 @@ public class Main {
 
         System.out.println("\nEx2");
         Alphabet alphabet = new Alphabet();
-        alphabet.test();
+        alphabet.test(); // text.txt
     }
 }
