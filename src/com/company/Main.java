@@ -15,9 +15,7 @@ public class Main {
 
 
         System.out.println("\nEx2");
-        Scanner scanner = new Scanner(System.in);
-        String filename = scanner.nextLine();
-        FileReader reader = new FileReader(filename);
-
+        Alphabet alphabet = new Alphabet();
+        alphabet.test();
     }
 }
