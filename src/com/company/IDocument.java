@@ -70,6 +70,20 @@ public interface IDocument {
             }
         });
 
+        // Создание / открытие музыки
+        nmusic.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null, "Currently unavailable!","Warning!",JOptionPane.INFORMATION_MESSAGE);
+            }
+        });
+        omusic.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null, "Currently unavailable!","Warning!",JOptionPane.INFORMATION_MESSAGE);
+            }
+        });
+
         // Выход
         iexit.addActionListener(new ActionListener() {
             @Override
@@ -78,13 +92,14 @@ public interface IDocument {
             }
         });
 
-        // Созранение
+        // Сохранение
         isave.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JOptionPane.showMessageDialog(null, "Saved!","Save",JOptionPane.INFORMATION_MESSAGE);
             }
         });
+
 
         jMenuBar.add(file);
         jFrame.setJMenuBar(jMenuBar);
