@@ -1,10 +1,13 @@
 package com.company;
 
 
-
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Objects;
 
 public class InternetOrder<Item> {
 
+    // Класс узла списка
     private class Node {
         private Node next;
         private Node prev;
@@ -25,6 +28,7 @@ public class InternetOrder<Item> {
     private Node last;
     private int size;
 
+    // Метод добавления нового узла
     public boolean add(Item item) {
         if (first == null) {
             first = new Node(item);
@@ -40,11 +44,13 @@ public class InternetOrder<Item> {
         return true;
     }
 
-    public boolean isEmpty() {
+    // Проверка на пустоту списка
+    private boolean isEmpty() {
         return this.size == 0;
     }
 
-    public Item removeFirst() {
+    // Удаление первого элемента списка
+    private Item removeFirst() {
         Item oldElement;
         if (this.size == 1) {
             oldElement = this.first.value;
@@ -59,7 +65,7 @@ public class InternetOrder<Item> {
         return oldElement;
     }
 
-    public Item removeLast() {
+    private Item removeLast() {
         Item oldElement;
         if (this.size == 1) {
             oldElement = this.first.value;
@@ -74,30 +80,29 @@ public class InternetOrder<Item> {
         return oldElement;
     }
 
-    public boolean remove(Item item) {
+    // Удаление элемента списка
+    public boolean remove(String name) {
         boolean result = false;
-        if (item != null) {
-            if (!isEmpty()) {
-                if (this.first.value.equals(item)) {
-                    removeFirst();
-                    result = true;
-                } else {
-                    Node delete = null;
-                    for (Node node = this.first.next; node != this.first; node = node.next) {
-                        if (node.value.equals(item)) {
-                            delete = node;
-                        }
+        if (!isEmpty()) {
+            if (Objects.equals(((Dish) this.first.value).getTitle(), name)) {
+                removeFirst();
+                result = true;
+            } else {
+                Node delete = null;
+                for (Node node = this.first.next; node != this.first; node = node.next) {
+                    if (Objects.equals(((Dish) node.value).getTitle(), name)) {
+                        delete = node;
                     }
-                    if (delete != null) {
-                        if (delete == this.last) {
-                            removeLast();
-                            result = true;
-                        } else {
-                            delete.prev.next = delete.next;
-                            delete.next.prev = delete.prev;
-                            this.size--;
-                            result = true;
-                        }
+                }
+                if (delete != null) {
+                    if (delete == this.last) {
+                        removeLast();
+                        result = true;
+                    } else {
+                        delete.prev.next = delete.next;
+                        delete.next.prev = delete.prev;
+                        this.size--;
+                        result = true;
                     }
                 }
             }
@@ -105,8 +110,102 @@ public class InternetOrder<Item> {
         return result;
     }
 
-    public boolean contains(Item item) {
-        return indexOf(item) != -1;
+    // Проверка на наличие в списке
+    private boolean contains(String name) {
+        return indexOf(name) != -1;
+    }
+
+    // Полученеи индекса в списке
+    private int indexOf(String name) {
+        int index = -1;
+        if (!isEmpty()) {
+            if (Objects.equals(((Dish) this.first.value).getTitle(), name)) {
+                index = 0;
+            } else {
+                int count = 1;
+                for (Node node = this.first.next; node != this.first; node = node.next) {
+                    if (Objects.equals(((Dish) node.value).getTitle(), name)) {
+                        index = count;
+                        break;
+                    } else {
+                        count++;
+                    }
+                }
+            }
+        }
+        return index;
+    }
+
+    // Удаление всех элементов с переданным именем
+    public int removeAll(String name) {
+        Dish dish = new Dish(name, "");
+        int count = 0;
+        while (indexOf(name) != -1) {
+            count++;
+            remove(name);
+        }
+        return count;
+    }
+
+    // Общее количество элементов списка
+    public int totalCount() {
+        int count = 0;
+        for (Node node = this.first.next; node != this.first; node = node.next) {
+            count++;
+        }
+        return count;
+    }
+
+    // Общая цена элементов списка
+    public int totalCost() {
+        int cost = 0;
+        for (Node node = this.first.next; node != this.first; node = node.next) {
+            cost += ((Dish) node.value).getPrice();
+        }
+        return cost;
+    }
+
+    // Преобразвать список в массив
+    public Item[] getArray() {
+        ArrayList<Item> arrayList = new ArrayList<>();
+        for (Node node = this.first.next; node != this.first; node = node.next) {
+            arrayList.add(node.value);
+        }
+        return  (Item[]) arrayList.toArray();
+    }
+
+    // Количество элементов списка с указанным именем
+    public int numberOf(String name) {
+        int count = 0;
+        ArrayList<Item> arrayList = new ArrayList<>();
+        for (Node node = this.first.next; node != this.first; node = node.next) {
+            if (Objects.equals(((Dish) node.value).getTitle(), name)) count++;
+        }
+        return count;
+    }
+
+    // Массив из уникальных элементов списка
+    public Item[] getUnicArray() {
+        ArrayList<Item> arrayList = new ArrayList<>();
+        for (Node node = this.first.next; node != this.first; node = node.next) {
+            if (!arrayList.contains(node.value)) arrayList.add(node.value);
+        }
+        return  (Item[]) arrayList.toArray();
+    }
+
+    // Массив элементов списка, отсортированных по убыванию цены
+    public Item[] getSortArray() {
+        Item[] items = getArray();
+        for (int i = 0; i < items.length - 1; i++) {
+            for (int j = 0; j < items.length - 1; j++) {
+                if (((Dish) items[j]).getPrice() > ((Dish) items[j + 1]).getPrice()) {
+                    Item temp = items[j];
+                    items[j] = items[j + 1];
+                    items[j + 1] = temp;
+                }
+            }
+        }
+        return items;
     }
 
     InternetOrder() {}
@@ -116,6 +215,4 @@ public class InternetOrder<Item> {
             add(item);
         }
     }
-
-
 }
