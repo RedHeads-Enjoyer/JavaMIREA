@@ -10,7 +10,7 @@ public class TablesOrderManager {
         orders = new Order[capacity];
     }
 
-    public void add(Order order){
+    public void addOrder(Order order){
         if (size == capacity - 1){
             capacity *= 2;
             copy(capacity);
@@ -19,7 +19,7 @@ public class TablesOrderManager {
         size+=1;
     }
 
-    public Order get(int index) {
+    public Order getOrder(int index) {
         try {
             return orders[index];
         }catch (IndexOutOfBoundsException e) {
@@ -28,19 +28,22 @@ public class TablesOrderManager {
         return null;
     }
 
-    public int getCapacity() {
-        return capacity;
-    }
-
     public int getSize() {
         return size;
     }
 
     private void copy(int newCapacity){
         Order[] newOrders = new Order[newCapacity];
-        for (int i=0; i<size; i++){
-            newOrders[i] = tableOrders[i];
-        }
-        tableOrders = newOrders;
+        if (size >= 0) System.arraycopy(orders, 0, newOrders, 0, size);
+        orders = newOrders;
+    }
+
+    public void remove(Order order) {
+        for (int i = 0; i < size; i++)
+            if (orders[i] == order)
+                for (int j = i; j < size; j++)
+                    orders[j] = orders[j - 1];
+
+        size -= 1;
     }
 }

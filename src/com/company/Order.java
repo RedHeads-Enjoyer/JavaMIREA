@@ -10,7 +10,7 @@ public class Order {
         items = new Item[capacity];
     }
 
-    public Item get(int index){
+    public Item getItem(int index){
         try {
             return items[index];
         }catch (IndexOutOfBoundsException e) {
@@ -19,7 +19,7 @@ public class Order {
         return null;
     }
 
-    public void add(Item item){
+    public void addItem(Item item){
         if (size == capacity - 1){
             capacity *= 2;
             copy(capacity);
@@ -30,10 +30,6 @@ public class Order {
 
     public int size(){
         return size;
-    }
-
-    private int getCapacity(){
-        return capacity;
     }
 
     private void copy(int newCapacity){
@@ -50,5 +46,4 @@ public class Order {
 
         size -= 1;
     }
-
 }
