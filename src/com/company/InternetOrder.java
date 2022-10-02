@@ -2,10 +2,9 @@ package com.company;
 
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Objects;
 
-public class InternetOrder<Item> {
+public class InternetOrder<Item> implements Order {
 
     // Класс узла списка
     private class Node {
@@ -29,6 +28,7 @@ public class InternetOrder<Item> {
     private int size;
 
     // Метод добавления нового узла
+
     public boolean add(Item item) {
         if (first == null) {
             first = new Node(item);
@@ -78,6 +78,23 @@ public class InternetOrder<Item> {
             this.size--;
         }
         return oldElement;
+    }
+
+
+    @Override
+    public boolean add(com.company.Item item) {
+        if (first == null) {
+            first = new Node((Item) item);
+            first.prev = first.next = first;
+            last = first;
+        }
+        else {
+            Node node = new Node(first, last, (Item) item);
+            last.next = first.prev = node;
+            first = node;
+        }
+        size++;
+        return true;
     }
 
     // Удаление элемента списка
@@ -166,12 +183,12 @@ public class InternetOrder<Item> {
     }
 
     // Преобразвать список в массив
-    public Item[] getArray() {
+    public com.company.Item[] getArray() {
         ArrayList<Item> arrayList = new ArrayList<>();
         for (Node node = this.first.next; node != this.first; node = node.next) {
             arrayList.add(node.value);
         }
-        return  (Item[]) arrayList.toArray();
+        return (com.company.Item[]) arrayList.toArray();
     }
 
     // Количество элементов списка с указанным именем
@@ -185,17 +202,17 @@ public class InternetOrder<Item> {
     }
 
     // Массив из уникальных элементов списка
-    public Item[] getUnicArray() {
+    public com.company.Item[] getUnicArray() {
         ArrayList<Item> arrayList = new ArrayList<>();
         for (Node node = this.first.next; node != this.first; node = node.next) {
             if (!arrayList.contains(node.value)) arrayList.add(node.value);
         }
-        return  (Item[]) arrayList.toArray();
+        return (com.company.Item[]) arrayList.toArray();
     }
 
     // Массив элементов списка, отсортированных по убыванию цены
-    public Item[] getSortArray() {
-        Item[] items = getArray();
+    public com.company.Item[] getSortArray() {
+        Item[] items = (Item[]) getArray();
         for (int i = 0; i < items.length - 1; i++) {
             for (int j = 0; j < items.length - 1; j++) {
                 if (((Dish) items[j]).getPrice() > ((Dish) items[j + 1]).getPrice()) {
@@ -205,7 +222,7 @@ public class InternetOrder<Item> {
                 }
             }
         }
-        return items;
+        return (com.company.Item[]) items;
     }
 
     InternetOrder() {}
